@@ -54,10 +54,11 @@ const columns = [
     header: "Horns",
     sortingFn: "alphanumeric",
   }),
-  columnHelper.accessor("name", {
-    cell: (info) => (
+  columnHelper.display({
+    id: "link",
+    cell: (props) => (
       <Link
-        href={`/antelopes/${info.getValue()}`}
+        href={`/antelopes/${props.row.getValue("name")}`}
         className="flex items-center hover:underline"
       >
         <span className="pr-2">More</span>
@@ -94,6 +95,7 @@ export default function AntelopeTable({ data }: { data: AntelopeData[] }) {
                   onClick={header.column.getToggleSortingHandler()}
                   cursor={header.column.getCanSort() ? "pointer" : ""}
                   userSelect="none"
+                  color="#182b52"
                 >
                   {flexRender(
                     header.column.columnDef.header,
